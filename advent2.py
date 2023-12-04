@@ -31,19 +31,17 @@ def minimum_power(set):
 with open("advent2.txt", "r") as f:
     games = f.read().splitlines()
     sum = 0
-    for game in games:
+    for id, game in enumerate(games):
         valid = True
-        id = re.search(r'\d+(?=:)', game).group(0)
         cube_sets = game.split(": ")[1].split(";")
         for set in cube_sets:
             if (not valid_game(set)):
                 valid = False
                 break
         if (valid):
-            sum += int(id)
+            sum += (id + 1)
     print(sum)
     power_sum = 0
     for game in games:
-        id = re.search(r'\d+(?=:)', game).group(0)
         power_sum += minimum_power(game)
     print(power_sum)

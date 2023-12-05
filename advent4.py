@@ -5,7 +5,7 @@ with open("advent4.txt", "r") as f:
     total = 0
     lines = f.read().splitlines()
     new_card_totals = {(id): 1 for (id, _) in enumerate(lines)}
-    for (card_id, card) in enumerate([line.split(": ")[1] for line in lines]):
+    for card_id, card in enumerate([line.split(": ")[1] for line in lines]):
         winning_numbers = {}
         winners = 0
         card_score = 0

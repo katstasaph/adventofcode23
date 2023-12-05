@@ -63,7 +63,7 @@ def merge(intervals):
 
 
 def usable_ranges(ranges, step):
-    # The previous step probably introduced overlap after doing the conversions; remove it
+    # Get our ranges back into merged sorted form
     ranges = merge(ranges)
     usable = []
     # The greatest number any rule covers; once we reach it we're done splitting ranges
@@ -108,11 +108,10 @@ def convert_with_range(seed_range, step):
 
 def find_lowest_with_range(ranges, steps):
     curr_ranges = ranges
+    converted = []
     for step in steps:
-        converted = []
         new_ranges = usable_ranges(curr_ranges, step)
-        for seed_range in new_ranges:
-            converted.append(convert_with_range(seed_range, step))
+        converted = [convert_with_range(seed_range, step) for seed_range in new_ranges]
         curr_ranges = converted
     return converted[0][0]
 

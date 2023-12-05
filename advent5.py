@@ -45,9 +45,7 @@ def parse(data):
 
 def seeds_to_ranges(seeds):
     ranges = [list(n) for n in batched(seeds, 2)]
-    sorted_ranges = [[pair[0], pair[0] + pair[1] - 1] for pair in ranges]
-    # Merge intervals to remove redundancies
-    return merge(sorted_ranges)
+    return [[pair[0], pair[0] + pair[1] - 1] for pair in ranges]
 
 
 # leetcode time
@@ -63,7 +61,7 @@ def merge(intervals):
 
 
 def usable_ranges(ranges, step):
-    # Get our ranges back into merged sorted form
+    # Get our ranges into merged sorted form
     ranges = merge(ranges)
     usable = []
     # The greatest number any rule covers; once we reach it we're done splitting ranges

@@ -8,9 +8,9 @@ def ways_to_win(race):
     constant = int(race[0])
     bounds = sorted(roots([1, -constant, int(race[1])]))
     if (bounds[1].is_integer()):
-        return int(abs(int(bounds[0] - 1) - int(bounds[1] - 1) + 1))
+        return int(bounds[1]) - 2 - int(bounds[0]) + 1
     else:
-        return int(abs(ceil(bounds[0]) - floor(bounds[1])) + 1)
+        return int((ceil(bounds[1]) - 2 - floor(bounds[0]))) + 1
 
 
 with open("advent6.txt", "r") as f:

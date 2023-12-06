@@ -1,16 +1,16 @@
 from re import findall
 from functools import reduce
+from math import ceil, floor
 from numpy import roots
 
 
 def ways_to_win(race):
     constant = int(race[0])
-    for x in range(0, constant):
-        y = (constant * x) - (x * x)
-        if (y > int(race[1])):
-            bounds = roots([1, -constant, y])
-            return int(abs(bounds[0] - bounds[1]) + 1)
-    return 0
+    bounds = sorted(roots([1, -constant, int(race[1])]))
+    if (bounds[1].is_integer()):
+        return int(abs(int(bounds[0] - 1) - int(bounds[1] - 1) + 1))
+    else:
+        return int(abs(ceil(bounds[0]) - floor(bounds[1])) + 1)
 
 
 with open("advent6.txt", "r") as f:
